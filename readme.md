@@ -388,3 +388,6 @@ roses are red
 sky is blue
 I am in the zone
 ```
+
+## Discarding changes
+Sometimes, you will have to discard changes that you have started working on
