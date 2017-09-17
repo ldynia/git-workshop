@@ -1,4 +1,4 @@
-# Das is GIT!
+# Das ist GIT!
 Welcome to the workshop on how to use `git version control`. After finishing this tutorial you will be able to use `git` in your next project. Thought tutorial was written with the focus on bioinformaticians, it targets everyone who has no or limited knowledge of working with `git`.
 
 ## Requirements
@@ -76,7 +76,7 @@ To create a **github repository** do as follow
 Voila, we created our first git repository!
 
 ## Git project + Git repository
-Now what left is to bind our **git project** with **git repository**. Execute below command within `git-workshop` repository. **Again, don't forget to change username in repository url!**
+Now what left is to bind our **git project** with **git repository**. Execute below command within `git-workshop` repository. **Don't forget to change username in repository url!**
 
 ```bash
 ludd@E7450:~/git-workshop$ git remote -v
@@ -94,6 +94,7 @@ To makes things easier lets level up and gain necessary vocabulary to work with 
 * **commit** - amount of information to be contributed to a branch.
 * **push** - action of sending commits to origin (cloud).
 * **pull** - action of retrieving commits from origin (cloud).
+* **HEAD** - latest commit on active branch.
 
 ## Commit
 If we thing about process of developing a program (writing a source code) then it's nothing more than adding/removing/updating/renaming a files and directories. Saying that lets contribute first file to our project and create our first commit. You will gonna do this step million of times then please put attention into it.
@@ -145,10 +146,10 @@ As you can see log contains of four elements.
 * **date** - time of contribution.
 * **message** - message associated with commit.
 
-I have to admit `git log` doesn't display the information in the nicest way. My favorite tool for working with git log is [tig](https://jonas.github.io/tig/). I higly recomend to install it.
+I have to admit that `git log` doesn't display the information in the nicest way. My favorite tool for working with git log is [tig](https://jonas.github.io/tig/). I higly recomend to install it.
 
 ## Push
-Going with the flow, the next step is to upload our first commit to cloud (origin). We can achive it with `git push` command. **Remember to change your user name**.
+Going with the flow, the next step is to upload our first commit to cloud (origin). We can achive it with `git push` command. **Remember to change your user name!!!**.
 
 ```bash
 ludd@E7450:~/git-workshop$ git push origin master
@@ -163,7 +164,227 @@ To https://github.com/ldynia/git-workshop.git
 
 Now if you will visit your github repository you will see your first commit stored at the remote origin. **Remember to change your user name**. [https://github.com/ldynia/git-workshop](https://github.com/ldynia/git-workshop)
 
-## Brunch
-Think about **master** brunch as the root of the tree -finally everything all branches merge into master brunch.
+## Branch
+Think about **master** branch as the root of the tree -finally everything all branches merge into master branch.
 
-The real deal working with version control tools is to create multiple brunches. The common scenario is to have a **master**, **develop**, **testing** brunch that will be deployed to equivalent environment. Lets create a **develop** brunch which will be rootede
+The real deal working with version control tools is to create multiple branches. The common scenario is to have a **master**, **develop**, **testing** branch that will be deployed to equivalent environment. Lets create a **develop** branch which will is roots from **master** branch.
+
+```bash
+# create new branch
+ludd@E7450:~/Coding/workshops/git-workshop$ git checkout -b develop
+Switched to a new branch 'develop'
+
+# display all available branches
+ludd@E7450:~/git-workshop$ git branch
+* develop
+  master
+```
+
+The **\*** (asterisk) next to branch name indicates that **develop** brunch is your active brunch. Other words we are working on **develop** branch now.
+
+Lets commit new file to the **develop** branch and checkout to the master branch and investigate content of our directory.
+```bash
+# create commit on develop branch
+ludd@E7450:~/git-workshop$ touch dev_file
+ludd@E7450:~/git-workshop$ git add dev_file
+ludd@E7450:~/git-workshop$ git commit -m'adding dev file'
+[develop 1a627dc] adding dev file
+1 file changed, 0 insertions(+), 0 deletions(-)
+create mode 100644 dev_file
+
+# list content of directory
+ludd@E7450:~/git-workshop$ ls
+dev_file readme.md
+
+# checkout to master branch and list content of directory
+ludd@E7450:~/git-workshop$ git checkout master
+Switched to branch 'master'
+ludd@E7450:~/git-workshop$ ls
+readme.md
+```
+What the hell append ? are we missing a file along with the 18 minutes of Watergate? Didn't we create a file few seconds ago? Yes we did. Hold your forces and don't panic the file is still there. What happend is we created a file on the develop branch and it is still there. Lets have a loop at it.
+
+```bash
+ludd@E7450:~/git-workshop$ git checkout develop
+Switched to branch 'develop'
+
+# files are still here
+ludd@E7450:~/git-workshop$ ls
+dev_file  readme.md
+```
+
+Now lets see the history of our work using `git log` command.
+
+```bash
+# list history of commits
+ludd@E7450:~/git-workshop$ git log --oneline
+1a627dc adding dev file
+aec47ab init -adding readme.md
+```
+
+Things look ok aren't they? Lets see the commits on the master branch.
+
+```bash
+ludd@E7450:~/git-workshop$ git checkout master
+Switched to branch 'master'
+ludd@E7450:~/git-workshop$ git log --oneline
+aec47ab init -adding readme.md
+```
+Can you see that we are behind with one commit on the master branch? This commit contains our file, we will be able to include it into master branch wit `git merge` commad.
+
+## Merge
+Another thing that you will be frequntly doing with git is to merge a commits between the branches -I'm telling you that you will be bored with it.  To merge changes from one branch to another you have to switch to the branch that you want to merge into and execute `git merge <branch_tom_merge_with>` command.
+
+```bash
+ludd@E7450:~/git-workshop$ git checkout master
+Already on 'master'
+ludd@E7450:~/git-workshop$ git merge develop
+Updating aec47ab..1a627dc
+Fast-forward
+ dev_file | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 dev_file
+ludd@E7450:~/git-workshop$ git log --oneline
+ 1a627dc adding dev file
+ aec47ab init -adding readme.md
+ludd@E7450:~/git-workshop$ ls
+dev_file  readme.md
+```
+
+## Merge conflicts
+So far so good. However, things not always go as expected. Often you will find yourself in situation of resolving a **marege conflicts**. A merge conflict in context of version control is a situation that happens when you try to merge a files that has overlapping and conflicting information on those branches. Here is an example.
+
+```bash
+# create conflicting line file on master
+ludd@E7450:~/git-workshop$ echo "roses are blue" > c.txt
+ludd@E7450:~/git-workshop$ git add .
+ludd@E7450:~/git-workshop$ git commit -m'blue'
+
+# create conflicting line file on develop
+ludd@E7450:~/git-workshop$ git checkout develop
+ludd@E7450:~/git-workshop$ echo "roses are red" > c.txt
+ludd@E7450:~/git-workshop$ git commit -m'red'
+
+# merge branches
+ludd@E7450:~/git-workshop$ git checkout master
+ludd@E7450:~/git-workshop$ git merge develop
+Auto-merging c.txt
+CONFLICT (add/add): Merge conflict in c.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+# investigate branch
+ludd@E7450:~/git-workshop$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+	both added:      c.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+## Looking into merge conflict
+Don't think about merge conflict as something bad happed. Actually, merge conflicts save yours ass! To resolve merge conflict we will have to investigate where it occured file. Lets look into the file that contains merge conflict.
+
+```bash
+ludd@E7450:~/git-workshop$ cat c.txt
+<<<<<<< HEAD
+roses are blue
+=======
+roses are red
+>>>>>>> develop
+```
+
+Important thing to notice.
+* **<<<<<<<** - this symbol indicates where conflicting line starts.
+* **>>>>>>>** - this symbol indicates where conflicting line ends.
+* **\=\=\=\=\=\=\=** - this symbol indicates division between conflicting lines.
+
+The important thing to know is the **HEAD** and order in which the conflict is structured. Upper part that contains the **HEAD** text, refers to our current active brunch - in our case it is the master branch. Lower part refers to branch that we are merging with - this time it is develop branch.
+
+## Fixing merge conflicts
+Fixing merge conflict is nothing more than figuring out which line(s) are wrong and removing them. I will use **vim**, to do it - you are welcome to use any text editor of your choice.
+
+```bash
+# edit, save and display content of conflicting file
+ludd@E7450:~/git-workshop$ vim c.txt
+ludd@E7450:~/git-workshop$ cat c.txt
+roses are red
+
+# commit changes
+ludd@E7450:~/git-workshop$ git add c.txt
+ludd@E7450:~/git-workshop$ git commit -m'resolving merge conflict'
+[master af8238a] resolving merge conflict
+
+# check the log
+ludd@E7450:~/git-workshop$ git log --oneline
+af8238a resolving merge conflict
+e2bd427 red
+402e2c5 adding c file
+1a627dc adding dev file
+aec47ab init -adding readme.md
+```
+
+Tap yourself in the shoulder and shout Wunderbar!, because we just resolved our first merge conflict.
+
+## Amend
+Sometimes you will find yourself in the situation where you forgot to add something important to the last commit, and the thing is not worth it to create new commit. This is where `git commit --amend` comes with help.
+
+```bash
+# amend text
+ludd@E7450:~/git-workshop$ echo "sky is blue" >> c.txt
+ludd@E7450:~/git-workshop$ git add c.txt
+ludd@E7450:~/git-workshop$ git commit --amend
+```
+
+## Stash
+Writing a software is a task that requires a focus. You have to go into the focus zone and start translating a conceptual models (requirements) into tangible things understandable by a computer. More likely, during process of writing code you will be interrupted, and request to fix some bug that appeared in previous commit(s). `git stash` is the tool that solves exactly this problem. It does what it says. It stashes uncommitted changes, and place you at the **HEAD**. Lets put our hands on it.
+
+
+```bash
+# we start working on some new feature
+ludd@E7450:~/git-workshop$ echo "I am in the zone" >> c.txt
+ludd@E7450:~/git-workshop$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   c.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+# your colleague comes and ask you to fix a bug
+ludd@E7450:~/git-workshop$ git stash
+Saved working directory and index state WIP on master: 2289968 resolving merge conflict
+HEAD is now at 2289968 resolving merge conflict
+
+# check if something is stashed
+ludd@E7450:~/git-workshop$ git stash list
+stash@{0}: WIP on master: 2289968 resolving merge conflict
+
+# check that there is nothing to commit
+ludd@E7450:~/git-workshop$ git status
+On branch master
+nothing to commit, working directory clean
+
+# now you do the fix and create commit;
+ludd@E7450:~/git-workshop$ doing stuff ...
+
+# once you fixed the bug you can comeback to what you started
+ludd@E7450:~/git-workshop$ git stash apply
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   c.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+# check that we are back on track
+ludd@E7450:~/git-workshop$ cat c.txt
+roses are red
+sky is blue
+I am in the zone
+```
