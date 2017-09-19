@@ -1,5 +1,5 @@
 # Das ist GIT!
-Welcome to the workshop on how to use `git version control`. After finishing this tutorial you will be able to use [Git](https://git-scm.com/doc) in your next project. Thought tutorial was written with the focus on bioinformaticians, it targets everyone who has no or limited knowledge of working with Git.
+Welcome to the workshop on how to use `Git version control`. Objectives of this workshop are to teach you concepts encountered in version control tools, as well as to give you necessary [Git](https://git-scm.com/doc) skills that you will apply in your next project. Thought tutorial was written with the focus on bioinformaticians, it targets everyone who has none or limited knowledge of Git.
 
 ## Requirements
 Before starting this tutorial you have to fulfilled below requirements.
@@ -10,18 +10,18 @@ Before starting this tutorial you have to fulfilled below requirements.
 * access to a linux/unix terminal
 
 ## Assumption
-I assume that a user has full field points specified in requirements section.
+I assume that the reader has full field points specified in requirements section.
 
 ## History
-Let me ask you this question. Try to name a software that has the grates impact on humanity? It is difficult one, but in my opinion it is [Linux](https://en.wikipedia.org/wiki/Linux) initially written by [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds).
+Let me ask you this question. Try to name a software that has the grates impact on humanity? it's difficult one, but in my opinion it's [Linux](https://en.wikipedia.org/wiki/Linux) initially written by [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds).
 
-Without Linux you would have to throw out all smartphones, tablets and tvs that run on Android and iOS. Content of the web would shrink at least 60%. We would not send a humans into the space. And many many more.
+Without Linux, you would have to throw out all smartphones, tabLet's and TVs that run on Android and iOS. Content of the web would shrink at least 60%. We would not send a human into the space and, many many more.
 
-But how you write a software that counts 15+ million lines of code? For suer it can't be written by a single man. Further more in project like this you would like to keep track who added changes (when and what), files being removed, retrieve deleted files, resolve overlaps of conflicting information, version the code, fix bugs, fix security volubilities etc.
+But how you write a software that counts 15+ million lines of code? For suer, it can't be written by a single man. Further more in project like this you would like to keep track who added changes (when and what), files being removed, retrieve deleted files, resolve overlaps of conflicting information, version the code, fix bugs, fix security volubilities etc.
 
-Another brilliant thing that Linus Torvalds wrote for the purpose of facilitating development of the Linux kernel was [Git](https://en.wikipedia.org/wiki/Git). Today git is the most popular version control/source control software used by developers. So, if you didn't use a [version control](https://en.wikipedia.org/wiki/Version_control) tools then I have pity on you!
+Another brilliant thing that Linus Torvalds wrote for the purpose of facilitating development of the Linux kernel was [Git](https://en.wikipedia.org/wiki/Git). Today git's the most popular version control/source control software used by developers. So, if you didn't use a [version control](https://en.wikipedia.org/wiki/Version_control) tools then I have pity on you!
 
-If the thing that I am writing now does not make sense to you then don't worry. I will walk you through the various use-cases of using Git.
+OK, if the thing that I'm writing now does not make sense to you then don't worry. I will walk you through the various use-cases of using Git.
 
 ## Inner Workings
 Git thinks of data as a set of snapshots. Every time you create a commit, or save the state of your project, Git takes a picture of all your files and stores a reference to that snapshot. If files have not changed then Git doesn’t store the file again, installed it links to the previous identical file it has already stored.
@@ -33,16 +33,16 @@ Everytime you create a commit Git creates hash (SHA-1 checksum), this way it's i
 ## Conceptual model
 A key to understand anything new is to develop conceptual model about the thing that you try to learn. A good conceptual model should be easily explainable to a kid. If you can do that then it means that you have a big picture of the thing that you are talking about, *und das is GIT! Ja?*
 
-### Tree
+### The tree
 One way of looking at version control is to associate it with a tree. Every tree has many branches that originate in common root. Moreover, a branch as many leaves that with time appear along with the growth of a branch.
 
 The essence of working with version control is basically to create branches and leaves. A branch symbolize development path or a direction of your work. A leave is a contribution to the branch it can be a line(s) of code, or a segment of text. It can be even a number of bytes introduce to image file.
 
 # Demo Project
-In this tutorial I will walk you through basic things that you have to know about git and the frequent tasks which will become your bread and butter if it's about working with git. So lets started with our project.
+In this tutorial I will walk you through basic things that you have to know about git and the frequent tasks which will become your bread and butter if it's about working with git. So Let's started with our project.
 
 ## Git config
-Before we start working with git we have to configure it. Lets add basic information associated with our git user such  **username** and **email**. **Remember to set appropriate username and email to yours account!**  
+Before we start working with git we have to configure it. Let's add basic information associated with our git user such  **username** and **email**. **Remember to set appropriate username and email to yours account!**  
 
 ```shell
 $ git config --global user.email "jon"
@@ -52,7 +52,7 @@ $ git config --global user.username "jon@do.it"
 ## Git local repository
 **Git repository** is a **.git** folder located in yours project directory. The **.git** folder is a hidden directory that contains git's files -Git files track changes to all files within your project.
 
-Lets create our first project and within the project we will create git repository. We will refer to this repository as a **local repository** -because it will resides locally on our machine.
+Let's create our first project and within the project we will create git repository. We will refer to this repository as a **local repository** -because it will reside locally on our machine.
 
 ```shell
 # create git-workshop directory
@@ -81,7 +81,7 @@ drwxrwxr-x  7 ludd ludd 4096 Sep 11 16:42 .git
 If you encounter a `.git` directory within a folder then, it means that this folder is a git repository.
 
 ## Git remote repository
-**Remote Git repository** is nothing more than your local Git repository uploaded to cloud -in short it is called **remote**.  The most used cloud for git repositories is [github.com](https://github.com/), and we will work with it- you are free to work with any source code management service (cloud).
+**Remote Git repository** is nothing more than your local Git repository uploaded to cloud -in short it's called **remote**.  The most used cloud for git repositories is [github.com](https://github.com/), and we will work with it- you are free to work with any source code management service (cloud).
 
 To create a **github repository** do as follow
 
@@ -106,7 +106,7 @@ origin	https://github.com/ldynia/git-workshop.git (push)
 ```
 
 ## Vocabulary
-To makes things easier lets level up and gain necessary vocabulary to work with git.
+To makes things easier Let's level up and gain necessary vocabulary to work with git.
 * **remote** - refers to git repository hosted in the cloud.
 * **origin** - refers to branch on remote.
 * **branch** - direction of your work within your git repository.
@@ -117,9 +117,9 @@ To makes things easier lets level up and gain necessary vocabulary to work with 
 * **HEAD** - latest commit on active branch.
 
 ## Commit
-If we thing about process of developing a program (writing a code) then it's nothing more than adding/removing/updating/renaming a files and directories.
+If we think about process of developing a program (writing a code) then it's nothing more than adding/removing/updating/renaming a files and directories.
 
-Saying that lets contribute first file to our project and create our first commit. You gonna do this step million times!
+Saying that Let's contribute first file to our project and create our first commit. You gonna do this step a million times!
 
 
 ```shell
@@ -168,7 +168,7 @@ As you can see log contains of four elements.
 * **date** - time of contribution.
 * **message** - message associated with commit.
 
-I have to admit that `git log` doesn't display the information in the nicest way. My favorite tool for working with git log is [tig](https://jonas.github.io/tig/). I higly recomend to install it.
+I have to admit that `git log` doesn't display the information in the nicest way. My favourite tool for working with git log is [tig](https://jonas.github.io/tig/). I highly recommend to install it.
 
 ## Push
 Going with the flow, the next step is to upload our first commit to cloud (remote). We can achieve it with `git push` command. **Remember to change your user name!!!**.
@@ -189,7 +189,7 @@ Now if you will visit your github repository you will see your first commit stor
 ## Branch
 Think about **master** branch as the root of the tree -eventually all branches merge into master branch.
 
-The real deal working with version control tools is to create multiple branches. The common scenario is to have a **master**, **develop**, **testing** branch that will be deployed to equivalent environment. Lets create a **develop** branch which roots from **master** branch.
+The real deal working with version control tools is to create multiple branches. The common scenario is to have a **master**, **develop**, **testing** branch that will be deployed to equivalent environment. Let's create the **develop** branch which roots from **master** branch.
 
 ```shell
 # create new branch
@@ -204,7 +204,7 @@ $ git branch
 
 The **\*** (asterisk) next to branch name indicates that **develop** brunch is your active brunch. Other words we are working on **develop** branch now.
 
-Lets commit new file to the **develop** branch and checkout to the master branch and investigate content of our directory.
+Let's commit new file to the **develop** branch and checkout to the master branch and investigate content of our directory.
 ```shell
 # create commit on develop branch
 $ touch d.txt
@@ -224,7 +224,7 @@ Switched to branch 'master'
 $ ls
 readme.md
 ```
-What the hell append? are we missing a file along with the 18 minutes of Watergate? Didn't we create a file few seconds ago? Yes we did. Hold your forces and don't panic the file is still there. What happened is, we created a file (commit) on the develop branch and we switch the branches. Becaouse of that master branch is behind the develop branch, and because of that we cannot see the file on master branch. To much talking. Lets have a loop at it.
+What the hell append? Are we missing a file along with the 18 minutes of Watergate? Didn't we create a file few seconds ago? Yes we did. Hold your forces and don't panic the file is still there. What happened is, we created a file (commit) on the develop branch and we switch the branches. Because of that master branch is behind the `develop` branch, and because of that we cannot see the file on `master` branch. Too much talking. Let's have a loop at it.
 
 ```shell
 $ git checkout develop
@@ -235,7 +235,7 @@ $ ls
 d.txt  readme.md
 ```
 
-Now lets see the history of our work using `git log` command.
+Now let's see the history of our work using `git log` command.
 
 ```shell
 # list history of commits
@@ -244,7 +244,7 @@ d296a37 d.txt
 166e350 init -readme.md
 ```
 
-Things look ok aren't they? Lets see the commits on the master branch.
+Things look OK aren't they? Let's see the commits on the master branch.
 
 ```shell
 $ git checkout master
@@ -256,7 +256,7 @@ $ git log --oneline
 Can you see that now we are behind with one commit on the master branch? This commit contains our file, we will be able to include it into master branch wit `git merge` commad.
 
 ## Merge
-Another thing that you will be frequntly doing with git is to merge a commits between the branches -I'm telling you that you will be bored with it. To merge changes from one branch to another you have to switch to the branch that you want to merge into and execute `git merge <branch_tom_merge_with>` command.
+Another thing that you will be frequently doing with git's to merge a commits between the branches -I'm telling you that you will be bored with it. To merge changes from one branch to another you have to switch to the branch that you want to merge into and execute `git merge <branch_tom_merge_with>` command.
 
 ```shell
 $ git checkout master
@@ -311,7 +311,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 ## Looking into merge conflict
-Don't think about merge conflict as something bad happed. Actually, merge conflicts save yours ass! To resolve merge conflict we will have to investigate where it occured. Lets have look into that.
+Don't think about merge conflict as something bad happen. Actually, merge conflicts save yours ass! To resolve merge conflict we will have to investigate where it occurred. Let's have look into that.
 
 ```shell
 $ cat a.txt
@@ -327,7 +327,7 @@ Important thing to notice.
 * **>>>>>>>** - this symbol indicates where conflicting line ends.
 * **\=\=\=\=\=\=\=** - this symbol indicates division between conflicting lines.
 
-The important thing to know is the **HEAD** and order in which the conflict is structured. Upper part that contains the **HEAD** text, refers to our current active brunch - in our case it is the master branch. Lower part refers to branch that we are merging with - this time it is develop branch.
+The important thing to know is the **HEAD** and order in which the conflict is structured. Upper part that contains the **HEAD** text, refers to our current active brunch - in our case it's the master branch. Lower part refers to branch that we are merging with - this time it's `develop` branch.
 
 ## Fixing merge conflicts
 Fixing merge conflict is nothing more than figuring out which line(s) are wrong and removing them. I will use **vim**, to do it - you are welcome to use any text editor of your choice.
@@ -377,12 +377,12 @@ d296a37 d.txt
 **Important!** This is the first time that we can notice that git actually does the **snapshots**. Have a look at the hash associated with last commit before and after `git commit --amend`. You can see that Git generated new hash -and this is the new snapshot.   
 
 ## Stash
-Writing a software is a task that requires a focus. You have to go into the focus zone and start translating a conceptual models (requirements) into tangible things understandable by a computer. More likely, during process of writing code you will be interrupted, and request to fix some bug that appeared in previous commit(s). `git stash` is the tool that solves exactly this problem. It does what it says. It stashes uncommitted changes, and place you at the **HEAD**. Lets put our hands on it.
+Writing a software is a task that requires a focus. You have to go into the focus zone and start translating a conceptual model (requirements) into tangible things understandable by a computer. More likely, during process of writing code you will be interrupted, and request to fix some bug that appeared in previous commit(s). `git stash` is the tool that solves exactly this problem. It does what it says. It stashes uncommitted changes, and place you at the **HEAD**. Let's put our hands on it.
 
 
 ```shell
 # we start working on some new feature
-$ echo "I am in the zone" >> a.txt
+$ echo "I'm in the zone" >> a.txt
 $ git status
 On branch master
 Changes not staged for commit:
@@ -427,7 +427,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 $ cat a.txt
 roses are red
 sky is blue
-I am in the zone
+I\'m in the zone
 ```
 
 ## Discarding uncommitted changes
@@ -485,7 +485,7 @@ d296a37 d.txt
 166e350 init -readme.md
 ```
 
-As you can see we removed one commit by reseting the git repository to second the last commit. In other words we just removed leave form our branch :)
+As you can see we removed one commit by reseting the git repository to second the last commit. In other words we just removed leave from our branch :)
 
 ## Restoring deleted files
 All of us knows what happens when you run this command `rm file.txt`. With the moment of pressing enter the file will be completely removed.
@@ -524,7 +524,7 @@ On branch develop
 nothing to commit, working directory clean
 ```
 
-Zum teufel! Did it happen what I think it happened? Yes you just experience the misterious ***Forece*** that was first introduce to in **Episode IV** (1977).
+Zum teufel! Did it happen what I think it happened? Yes you just experience the mysterious ***Force*** that was first introduce to in **Episode IV** (1977).
 
 Because git constantly tracks for the changes added and removed to your project and instantly creates snapshot of the changes at any time you rare able to commit or discard the changes. In this case our change was action of remove the files, which we discarded with `git checkout` command.
 
@@ -562,7 +562,7 @@ Yes, `git status` displays correct message. This is what our rules says.
 ## Submodules
 I've never seen a project that would not dependent on some 3rd party software. With Git you can include someone else software using submodules. Submodule/Module is a reference to an external Git repository reflected within the software.
 
-Lets add our first submodule to our project
+Let's add our first submodule to our project
 
 ```shell
 $ mkdir vendors
@@ -579,7 +579,7 @@ $ git submodule update --recursive --remote
 # Conclusions
 Together we went through the most essentially skills that you need to have in order to work on a large projects. However, I didn't show you everything what git has to offer. I encourage you to explore Git more into deep by checking below resources.
 
-But for now holding in one hand some bewski and in other Git's manual in shape of pretzel lets shout out the truth that we discovered that **Git ist GIT!!!**
+But for now holding in one hand some brewski and in other Git's manual in the shape of pretzel Let's shout out the truth that we discovered that **Git'st GIT!!!**
 
 * [Learn Git](https://www.atlassian.com/git/tutorials)
 * [Git Docs](https://git-scm.com/doc)
