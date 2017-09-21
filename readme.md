@@ -53,8 +53,8 @@ The essence of working with version control is basically to create branches and 
 Before we start working with Git we have to configure it first. Let's add basic information associated with our Git user such  a **username** and an **email**. **Remember to set appropriate username and email to yours account !!!**  
 
 ```shell
-$ git config --global user.email "jon"
-$ git config --global user.username "jon@do.it"
+$ git config --global user.username "T800"
+$ git config --global user.email "T800@skynet.com"
 ```  
 
 ## Git local repository
@@ -305,7 +305,9 @@ You have unmerged paths.
   (fix conflicts and run "git commit")
 Unmerged paths:
   (use "git add <file>..." to mark resolution)
-	both added:      a.txt
+
+  both added:      a.txt
+
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
@@ -399,14 +401,15 @@ $ git stash
 Saved working directory and index state WIP on master: 1a0f541 resolving red/blue conflict
 HEAD is now at 1a0f541 resolving red/blue conflict
 
-# check if something is stashed
-$ git stash list
-stash@{0}: WIP on master: 2289968 resolving red/blue conflict
-
 # check that there is nothing to commit
 $ git status
 On branch master
 nothing to commit, working directory clean
+
+# check if something is stashed
+$ git stash list
+stash@{0}: WIP on master: 2289968 resolving red/blue conflict
+
 
 # now you do the fix and create commit;
 $ touch b.txt
@@ -504,7 +507,7 @@ $ ls
 $
 
 # status
-lukas@home:~/git-workshop$ git status
+$ git status
 On branch develop
 Changes not staged for commit:
   (use "git add/rm <file>..." to update what will be committed)
@@ -515,12 +518,12 @@ Changes not staged for commit:
 	deleted:    readme.md
 
 # checkout uncommited changes
-lukas@home:~/git-workshop$ git checkout a.txt d.txt readme.md
-lukas@home:~/git-workshop$ ls
+$ git checkout a.txt d.txt readme.md
+$ ls
 a.txt  d.txt  readme.md
 
 # status
-lukas@home:~/git-workshop$ git status
+$ git status
 On branch develop
 nothing to commit, working directory clean
 ```
@@ -528,6 +531,47 @@ nothing to commit, working directory clean
 Zum teufel! Did it happen what I think it happened? Yes you just experience the mysterious ***Force*** that was first introduce to in **Episode IV** (1977).
 
 Because git constantly tracks for the changes added and removed to your project and instantly creates snapshot of the changes at any time you rare able to commit or discard the changes. In this case our change was action of remove the files, which we discarded with `git checkout` command.
+
+## Tagging
+Additionally interesting feature that Git has to offer is ability of tagging specific commits. Tagging is a convenient solution for marking milestones in software project.
+
+Let's have a look at it.
+
+```shell
+# display all tags
+$ git tags
+$
+
+# create tag
+$ git tag -a 1.0 -m"1st stable version"
+$ git tag -n
+
+# push tags to remote
+$ git push origin master --tags
+
+# show tag
+$ git show 1.0
+tag 1.0
+Tagger: ldynia <ludd@cbs.dtu.dk>
+Date:   Thu Sep 21 11:30:33 2017 +0200
+
+1st stable version
+
+commit f999edd5140ace058849fcb8a68e8149fd4befe4
+Author: ldynia <ludd@cbs.dtu.dk>
+Date:   Thu Sep 21 11:15:36 2017 +0200
+
+    adding .gitignore
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..e28965b
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,2 @@
++!.gitignore
++*.log
+```
 
 ## Gitignore
 Sometimes project that you are working on creates a files that are important to environment but not to the sourcode. An example of such case might be a log files. With Git we are able to discard files or even whole directories.
@@ -551,7 +595,7 @@ a.txt  d.txt  git.log  readme.md
 $ git status
 On branch develop
 nothing to commit, working directory clean
-lukas@home:~/git-workshop$
+$
 ```
 
 Yes, `git status` displays correct message. This is what our rules says.
