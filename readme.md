@@ -1,7 +1,7 @@
 # Das ist GIT!
-Welcome to the `Git version control` workshop. Objectives of this workshop are to teach you concepts encountered in version control tools, as well as to give you necessary [Git](https://git-scm.com/doc) skills that you will apply in your next project.
+Welcome to the `Git version control` workshop. Objectives of this workshop are to teach you concepts encountered in version control tools, as well as to give you necessary [Git](https://git-scm.com/doc) skills that you will apply in your next project. Tutorial was written with focus on people who has none or limited knowledge of Git.
 
-Thought tutorial was written with the focus on bioinformaticians, it targets everyone who has none or limited knowledge of Git.
+In this tutorial I will walk you through basic commands that you have to know while working with Git. I will walk you through the frequent tasks which will become your bread and butter if it's about working with git. Let's started with our project.
 
 ## Requirements
 Before starting this tutorial you have to fulfilled below requirements.
@@ -15,33 +15,28 @@ Before starting this tutorial you have to fulfilled below requirements.
 I assume that the reader has fulfilled points specified in requirements section.
 
 ## History
-Let me ask you this question. Try to name a software that has the grates impact on humanity? it's difficult one, but in my opinion it's [Linux](https://en.wikipedia.org/wiki/Linux) initially written by [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds).
+Let me ask you this question. Try to name a single software that has the grates impact on humanity? it's difficult one, but in my opinion it's [Linux](https://en.wikipedia.org/wiki/Linux) initially written by [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds).
 
-Without Linux, you would have to throw out all smartphones, tablets and TVs that run on Android and iOS. Moreover, content of the web would shrink at least 60% and many more.
+Without Linux, you would have to throw out all smartphones, tablets and TVs that run on Android and iOS. Moreover, content of the web would shrink at least 60% and, many more.
 
 But how you write a software that counts 15+ million lines of code? For suer, it can't be written by a single man. Further more in the project like this you would like to keep track on who added changes, when changes had been added what was added, which files had been removed, recover deleted files, resolve overlaps of conflicting information, version the changes, fix bugs, fix security volubilities etc.
 
-Another brilliant thing that Linus Torvalds wrote for the purpose of facilitating development of the Linux kernel was [Git](https://en.wikipedia.org/wiki/Git). Today Git is the most popular version control/source control software used by developers. So, if you didn't use any [version control](https://en.wikipedia.org/wiki/Version_control) tools then I have pity on you!
+Another brilliant thing that Linus Torvalds wrote for the purpose of facilitating development of the Linux kernel was [Git](https://en.wikipedia.org/wiki/Git). Today Git is the most popular `version control` / `source control` software used by developers. So, if you didn't use any [version control](https://en.wikipedia.org/wiki/Version_control) tools then I have pity on you!
 
 OK, if the thing that I'm writing about doesn't make sense to you then don't worry. I will walk you through the various use-cases of using Git.
 
 ## Inner Workings
-Git thinks of data as a set of snapshots. Every time you create a commit, or save the state of your project, Git takes a picture of all your files and stores a reference to that snapshot. If files have not changed then Git doesn’t store the file again, installed it links to the previous identical file it has already stored.
+Git thinks of data as a set of snapshots. Every time you create a commit, or save the state of your project, Git takes a picture of all files stored in your project and reference to it as snapshot (commit). If files have not changed then Git doesn’t store the file again, installed it links to the previous identical file it has already stored. However, if a file has changed then Git stores the difference between previous state of the file and the current state. Everytime you create a commit Git creates a snapshot represented by SHA-1 hash (cheksum), this way it's impossible to change content of a file without Git knowing about it.
 
-Because of that you can work offline and contribute changes to your project and, next time when you are online you will sync the difference between your local version of the project online.
-
-Everytime you create a commit Git creates a snapshot represented by SHA-1 hash (cheksum), this way it's impossible to change content of a file without Git knowing about it.
+Additional advantage of using Git is possibility of working offline. You can locally contribute changes to your project and, next time when you are online you will sync the difference between your local version of the project with online version.
 
 ## Conceptual model
-A key to understand anything new is to develop conceptual model about the thing that you try to learn. A good conceptual model should be easily explainable to a kid. If you can do that then it means that you have a big picture of the thing that you are talking about, *und das is GIT! Ja?*
+The key to understand anything new is to develop conceptual model about the thing that you try to learn. A good conceptual model should be easily explainable to a kid. If you can do that then, it means that you have a big picture of the thing that you are talking about, *und das is GIT! Ja?*
 
 ### The tree
 One way of thinking about version control is to associate it with a tree. Every tree has many branches that originate in common root. Moreover, a branch has many leaves that grow along the branches.
 
-The essence of working with version control is basically to create branches and leaves. A branch symbolize development path or a direction of your work. A leave is a contribution to the branch it can be a line(s) of code, or a segment of text. It can be even a number of bytes introduce to an image file.
-
-# Demo Project
-In this tutorial I will walk you through basic commands that you have to know while working with Git. I will walk you through the frequent tasks which will become your bread and butter if it's about working with git. Let's started with our project.
+The essence of working with version control is basically to create branches and leaves. A branch symbolize development path or a direction of your work. A leaf is a contribution to the branch it can be a line(s) of code, or a segment of text. It can be even a number of bytes introduce to an image file.
 
 ## Git config
 Before we start working with Git we have to configure it first. Let's add basic information associated with our Git user such  a **username** and an **email**. **Remember to set appropriate username and email to yours account !!!**  
