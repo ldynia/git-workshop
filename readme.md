@@ -39,7 +39,7 @@ To makes things easier let's level up and gain necessary vocabulary to work with
 ## Inner Workings
 Git thinks of data as a set of snapshots. Every time you create a commit, or save the state of your project, Git takes a picture of all files stored in your project and reference to it as snapshot (commit). If files have not changed then Git doesn’t store the file again, installed it links to the previous identical file it has already stored. However, if a file has changed then Git stores the difference between previous state of the file and the current state. Everytime you create a commit Git creates a snapshot represented by SHA-1 hash (cheksum), this way it's impossible to change content of a file without Git knowing about it.
 
-Additional advantage of using Git is possibility of working offline. You can locally contribute changes to your project and, next time when you are online you will sync the difference between your local version of the project with online version.
+Additional advantage of using Git is possibility of working offline. You can locally contribute changes to your project and next time when you are online you will sync the difference between your local version of the project with online version.
 
 ## Conceptual model
 The key to understand anything new is to develop conceptual model about the thing that you try to learn. A good conceptual model should be easily explainable to a kid. If you can do that then, it means that you have a big picture of the thing that you are talking about, *und das is GIT! Ja?*
@@ -47,7 +47,7 @@ The key to understand anything new is to develop conceptual model about the thin
 ### The tree
 One way of thinking about version control is to associate it with a tree. Every tree has many branches that originate in common root. Moreover, a branch has many leaves that grow along the branches.
 
-The essence of working with version control is basically to create branches and leaves. A branch symbolize development path or a direction of your work. A leaf is a contribution to the branch it can be a line(s) of code, or a segment of text. It can be even a number of bytes introduce to an image file.
+The essence of working with version control is basically to create branches and leaves. A branch symbolize development path or a direction of your work. A leaf is a contribution to the branch it can be a line(s) of code, or a segment of text. It can be even a number of bytes introduce to binary file.
 
 ## Git config
 Before we start working with Git we have to configure it first. Let's add basic information associated with our Git user such  a **username** and an **email**. **Remember to set appropriate username and email to yours account !!!**  
@@ -199,7 +199,7 @@ $ git branch
   master
 ```
 
-The **\*** (asterisk) next to branch name indicates that **develop** brunch is your active brunch. Other words we are working on **develop** branch now.
+The **\*** (asterisk) next to branch name indicates that **develop** branch is your active branch. Other words we are working on **develop** branch now.
 
 Let's commit new file to the **develop** branch and checkout to the master branch and investigate content of our directory.
 ```shell
@@ -277,7 +277,7 @@ d.txt  readme.md
 ```
 
 ## Merge conflicts
-So far so good. However, things not always go as expected. Often you will find yourself in a situation where you'll have to resolve **marege conflicts**. A conflict in context of version control is a situation when you try to merge a files that has overlapping and conflicting information between the branches that you are trying to merge. Here is an example.
+  So far so good. However, things not always go as expected. Often you will find yourself in a situation where you'll have to resolve **merge conflicts**. A conflict in context of version control is a situation when you try to merge a files that has overlapping and conflicting information between the branches that you are trying to merge. Here is an example.
 
 ```shell
 # create conflicting line file on master
@@ -328,7 +328,7 @@ Important thing to notice.
 * **>>>>>>>** - this symbol indicates where conflicting line ends.
 * **\=\=\=\=\=\=\=** - this symbol indicates division between conflicting lines.
 
-The important thing to notice is the **HEAD** and the order in which the conflict is structured. Upper part that contains the **HEAD**, refers to current active brunch - in our case it's the master branch. Lower part refers to branch that we are merging with - this time it's **develop** branch.
+The important thing to notice is the **HEAD** and the order in which the conflict is structured. Upper part that contains the **HEAD**, refers to current active branch - in our case it's the master branch. Lower part refers to branch that we are merging with - this time it's **develop** branch.
 
 ## Fixing merge conflicts
 Fixing merge conflict is nothing more than figuring out which line(s) are wrong and removing them. I will use **vim**, to do it - you are welcome to use any text editor of your choice.
@@ -561,7 +561,7 @@ Yes, `git status` displays correct message. This is what our rules says.
 
 
 ## Submodules
-I've never seen a project that would not dependent on some 3rd party software. With Git you can include someone else's software using `git submodule` command. Submodule/Module is a reference to an external Git repository reflected within the software.
+I've never seen a project that would not dependent on some 3rd party software. With Git you can include someone else's software using `git submodule` command. Submodule/Module is a reference to an external Git repository reflected within yours project.
 
 Let's add our first submodule to our project
 
