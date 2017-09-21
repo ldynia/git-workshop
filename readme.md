@@ -38,6 +38,17 @@ One way of thinking about version control is to associate it with a tree. Every 
 
 The essence of working with version control is basically to create branches and leaves. A branch symbolize development path or a direction of your work. A leaf is a contribution to the branch it can be a line(s) of code, or a segment of text. It can be even a number of bytes introduce to an image file.
 
+## Vocabulary
+To makes things easier let's level up and gain necessary vocabulary to work with git.
+* **remote** - refers to git repository hosted in the cloud.
+* **origin** - refers to branch on remote.
+* **branch** - direction of your work within your git repository.
+* **master** - default branch for any git repository.
+* **commit** - amount of information to be contributed to a branch.
+* **push** - action of sending commits to origin (cloud).
+* **pull** - action of retrieving commits from origin (cloud).
+* **HEAD** - latest commit on active branch.
+
 ## Git config
 Before we start working with Git we have to configure it first. Let's add basic information associated with our Git user such  a **username** and an **email**. **Remember to set appropriate username and email to yours account !!!**  
 
@@ -47,9 +58,9 @@ $ git config --global user.username "jon@do.it"
 ```  
 
 ## Git local repository
-**Git repository** is a **.git** folder located within yours project directory. The **.git** folder is a hidden directory that contains git's files -Git files track changes to all files within your project.
+**Git repository** is a **.git** folder located within yours project directory. The **.git** folder is a hidden directory that contains git's files. Git files track changes to all files within your project.
 
-Let's create our first project and within the project we will create our first Git repository. We will refer to this repository as a **local repository** -because it will reside locally on our machine.
+Let's create our first project and within the project we will create our first Git repository. We will refer to this repository as a **local repository** because it will reside locally on our machine.
 
 ```shell
 # create git-workshop directory
@@ -78,7 +89,7 @@ drwxrwxr-x  7 ludd ludd 4096 Sep 11 16:42 .git
 If you encounter a `.git` directory within a folder then, it means that this folder is a git repository.
 
 ## Git remote repository
-**Remote** Git repository is nothing more than your local Git repository uploaded to the cloud (**remote**).  The most used cloud for git repositories is [github.com](https://github.com/), and we will work with it - feel free to work with any source code management service (cloud).
+**Remote** Git repository is nothing more than your local Git repository uploaded to the cloud (**remote**).  The most used cloud for Git repositories is [github.com](https://github.com/), and we will work with it. However, feel free to work with any source code management service (cloud).
 
 To create a **github repository** do as follow
 
@@ -87,7 +98,7 @@ To create a **github repository** do as follow
 3. Clink button called **new repository**
 4. Enter project name called **git-workshop**
 5. Click button called *Create repository*
-6. Click button called *Https* and copy repository's url. Remember to change user name to your's github username!!!! eg. `https://github.com/ldynia/git-workshop.git`
+6. Click button called *Https* and copy repository's url. **Remember to change user name to your's github username!!!** eg. `https://github.com/ldynia/git-workshop.git`
 
 Voila, we created our first remote Git repository!
 
@@ -102,22 +113,10 @@ origin	https://github.com/ldynia/git-workshop.git (fetch)
 origin	https://github.com/ldynia/git-workshop.git (push)
 ```
 
-## Vocabulary
-To makes things easier let's level up and gain necessary vocabulary to work with git.
-* **remote** - refers to git repository hosted in the cloud.
-* **origin** - refers to branch on remote.
-* **branch** - direction of your work within your git repository.
-* **master** - default branch for any git repository.
-* **commit** - amount of information to be contributed to a branch.
-* **push** - action of sending commits to origin (cloud).
-* **pull** - action of retrieving commits from origin (cloud).
-* **HEAD** - latest commit on active branch.
-
 ## Commit
-If we think about process of developing a program (writing a code) then it's nothing more than adding/removing/updating/renaming a files and directories.
+If we think about process of developing a program (writing a code) then, it's nothing more than adding/removing/updating/renaming a files and directories.
 
 Saying that let's contribute first file to our project and create our first commit. You gonna do this step a million times!
-
 
 ```shell
 # create empty file and check status of current work
@@ -147,10 +146,9 @@ $ git commit -m'init -readme.md'
 ```
 
 ## Log
-At any time you can see the history of changes contributed to Git repository. To do so execute `git log` command. The log is displayed top down -top being the latest commit, down the oldest.
+At any time you can see the history of changes contributed to a Git repository. To do so execute `git log` command. The log is displayed top down -top being the latest commit, down the oldest.
 
 ```shell
-# display log
 $ git log
 commit 166e35068dd1642ef21a72ce77ea4056f73c45a0
 Author: ldynia <ludd@cbs.dtu.dk>
@@ -184,7 +182,7 @@ To https://github.com/ldynia/git-workshop.git
 Now if you will visit your github repository you will see your first commit stored at the remote origin. **Remember to change your user name**. [https://github.com/ldynia/git-workshop](https://github.com/ldynia/git-workshop)
 
 ## Branch
-Root of the tree is **master** branch - eventually all branches merge into it.
+Root of the tree is **master** branch. Eventually all branches merge into it.
 
 The real deal working with version control tools is to create multiple branches (unless you work for Google). The common scenario is to have a **master**, **develop**, **testing** branch that will be deployed to equivalent environment.
 
@@ -223,7 +221,7 @@ Switched to branch 'master'
 $ ls
 readme.md
 ```
-Wait the moment. What the hell happened? Are we missing a file along with the 18 minutes of Watergate? Didn't we create a file few seconds ago? Yes we did. Hold your horses and don't panic the file is still there. What happened is, we created a file (commit) on the `develop` branch and we switch the branches. Because of two different snapshots stored on branches the `master` branch is behind the `develop` branch, and because of that we cannot see the file on `master` branch.
+Wait the moment. What the hell happened? Are we missing a file along with the 18 minutes of Watergate? Didn't we create a file few seconds ago? Yes we did. Hold your horses and don't panic the file is still there. What happened is, we created a file (commit) on the **develop** branch and we switch the branches. Because of two different snapshots stored on branches the **master** branch is behind the **develop** branch, and because of that we cannot see the file on **master** branch.
 
 Too much talking let's have a loop at it.
 
@@ -254,10 +252,10 @@ Switched to branch 'master'
 $ git log --oneline
 166e350 init -readme.md
 ```
-Can you see that now we are behind with one commit on the master branch? This commit contains our file, we will be able to include it into master branch wit `git merge` commad.
+Can you see now that we are behind one commit on the **master** branch? This commit contains our file, we will be able to include it into master branch wit `git merge` command.
 
 ## Merge
-Another thing that you will be doing frequently with git's to merge a commits between the branches -I'm telling you that you will be bored with it. To merge changes from one branch to another you have to switch to the branch that you want to merge changes into and execute `git merge <branch_tom_merge_with>` command.
+Another thing that you will be doing frequently with git is to merge a commits between the branches -I'm telling you that you will be bored with it. To merge changes from one branch to another you have to switch to the branch that you want to merge changes into and execute `git merge <branch_tom_merge_with>` command.
 
 ```shell
 $ git checkout master
@@ -330,7 +328,7 @@ Important thing to notice.
 * **>>>>>>>** - this symbol indicates where conflicting line ends.
 * **\=\=\=\=\=\=\=** - this symbol indicates division between conflicting lines.
 
-The important thing to notice is the **HEAD** and the order in which the conflict is structured. Upper part that contains the **HEAD**, refers to current active brunch - in our case it's the master branch. Lower part refers to branch that we are merging with - this time it's `develop` branch.
+The important thing to notice is the **HEAD** and the order in which the conflict is structured. Upper part that contains the **HEAD**, refers to current active brunch - in our case it's the master branch. Lower part refers to branch that we are merging with - this time it's **develop** branch.
 
 ## Fixing merge conflicts
 Fixing merge conflict is nothing more than figuring out which line(s) are wrong and removing them. I will use **vim**, to do it - you are welcome to use any text editor of your choice.
@@ -488,7 +486,7 @@ d296a37 d.txt
 166e350 init -readme.md
 ```
 
-As you can see we removed one commit by reseting the git repository to second the last commit. In other words we just removed leave from our branch :)
+As you can see we removed one commit by reseting the git repository to second the last commit. In other words we just removed leaf from our branch :)
 
 ## Restoring deleted files
 All of us knows what happens when you run this command `rm file.txt`. With the moment of pressing enter the file will be gone.
@@ -582,7 +580,7 @@ $ git submodule update --recursive --remote
 # Conclusions
 Together we went through the most essentially skills that you need to have in order to work on a large projects. However, I didn't show you everything what Git has to offer. I encourage you to explore Git more into deep by checking below resources.
 
-But for now holding in one hand some brewski and in other hand Git's manual in the shape of pretzel. Let's shout out the truth that we discovered that **Git'st GIT!!!**
+But for now holding in one hand some brewski and in other hand Git's manual in the shape of pretzel. Let's shout out the truth that we discovered that **Git ist GIT!!!**
 
 * [Learn Git](https://www.atlassian.com/git/tutorials)
 * [Git Docs](https://git-scm.com/doc)
