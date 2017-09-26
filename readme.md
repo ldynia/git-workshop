@@ -573,6 +573,117 @@ index 0000000..e28965b
 +*.log
 ```
 
+## Diff
+`git diff <filename>` is probably my favoirite command. It allows us to see difference between changes introduce in latest commit and changes on **HEAD**. Actually, we even can do `git diff` on a file at different branches.
+
+Let's have a look at both cases.
+
+```shell
+# create even numbers on master
+$ echo -e "1\n2\n4\n6" >>  numbers.txt
+$ git add numbers.txt
+$ git commit -m'even numbers'
+
+# create odd numbers on develop
+$ git checkout develop
+$ echo -e "3\n5\n7\n9" >>  numbers.txt
+$ git commit -m'odd numbers'
+
+# compare numbers between branches
+$ git checkout master
+$ git diff master develop numbers.txt
+diff --git a/numbers.txt b/numbers.txt
+index 76fda2f..dd9c834 100644
+--- a/numbers.txt
++++ b/numbers.txt
+@@ -1,4 +1,4 @@
+-1
+-2
+-4
+-6
++3
++5
++7
++9
+
+# compare diff between HEAD
+$ echo "3.14" >> numbers.txt
+$ git diff numbers.txt
+diff --git a/numbers.txt b/numbers.txt
+index 76fda2f..5b51314 100644
+--- a/numbers.txt
++++ b/numbers.txt
+@@ -2,3 +2,4 @@
+ 2
+ 4
+ 6
++3.14
+
+$ git add  numbers.txt
+$ git commit -m'pi'
+```
+
+## Checkout from branches
+Previous we worked with `git checkout` in the context of restoring/discarding changes. Now, we will use it to actually checkout changes from different branch. You might ask yourself does it sound like a `git merge`? Yes, it does. However, sometimes we might find ourself in the situation that we want to checkout a single file rather than whole branch.
+
+Let's have a look at it as well.
+
+```shell
+$ git checkout develop
+$ echo "2.71" >> numbers.txt
+$ git add numbers.txt
+$ git commit -m'e'
+$ git checkout master
+
+$ cat numbers.txt
+1
+2
+4
+6
+3.14
+
+$ git checkout develop -- numbers.txt
+$ cat numbers.txt
+3
+5
+7
+9
+2.71
+```
+
+Opps! What happened? I tell you what happened. We just learn that using `git checkout` might be as risky as stepping on a thin ice. We literally **checkout** a file. By this I mean that we replace our `numbers.txt` on **develop**, with `numbers.txt` from **master** without checking on merge conflicts.
+
+There is less pitfall way of checking out files from different branch. We just have to add `--patch` option and we will be prompted with question about what action should we take before checkout
+
+
+```shell
+
+# reset branch to previous state
+$ git reset HEAD
+$ git checkout .
+
+# checkout
+$ git checkout --patch develop numbers.txt
+diff --git b/numbers.txt a/numbers.txt
+index 5b51314..df43dda 100644
+--- b/numbers.txt
++++ a/numbers.txt
+@@ -1,5 +1,5 @@
+-1
+-2
+-4
+-6
+-3.14
++3
++5
++7
++9
++2.71
+Apply this hunk to index and worktree [y,n,q,a,d,/,e,?]?
+```
+Pres `q` to quit checkout.
+
+
 ## Gitignore
 Sometimes project that you are working on creates a files that are important to environment but not to the sourcode. An example of such case might be a log files. With Git we are able to discard files or even whole directories.
 
