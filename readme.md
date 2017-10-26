@@ -54,7 +54,7 @@ The key to understand anything new is to develop conceptual model about the thin
 ### The tree
 One way of thinking about version control is to associate it with a tree. Every tree has many branches that originate in common root. Moreover, a branch has many leaves that grow along the branches.
 
-The essence of working with version control is basically to create branches and leaves. A branch symbolize development path or a direction of your work. A leaf is a contribution to the branch it can be a line(s) of code, or a segment of text. It can be even a number of bytes introduce to binary file.
+The essence of working with version control is basically to create branches and leaves. A branch symbolize development path or a direction of work. A leaf is a contribution to the branch it can be a line(s) of code, or a segment of text. It can be even a number of bytes introduce to binary file.
 
 ## Git config
 Before we start working with Git we have to configure it first. Let's add basic information associated with our Git user such  a **username** and an **email**. **Remember to set appropriate username and email to yours account !!!**  
@@ -153,7 +153,7 @@ $ git commit -m'init -readme.md'
 ```
 
 ## Log
-At any time you can see the history of changes contributed to a Git repository. To do so execute `git log` command. The log is displayed top down -top being the latest commit, down the oldest.
+At any time you can see the history of changes contributed to a Git repository. To do so execute `git log` command. The log is displayed top down -top being the newest commit, down the oldest.
 
 ```shell
 $ git log
@@ -193,7 +193,7 @@ Root of the tree is **master** branch. Eventually all branches merge into it.
 
 The real deal working with version control tools is to create multiple branches (unless you work for Google). The common scenario is to have a **master**, **develop**, **testing** branch that will be deployed to equivalent environment.
 
-Let's create the **develop** branch which roots from **master** branch.
+Let's create a **develop** branch which roots from a **master** branch.
 
 ```shell
 # create new branch
@@ -206,9 +206,9 @@ $ git branch
   master
 ```
 
-The **\*** (asterisk) next to branch name indicates that **develop** branch is your active branch. Other words we are working on **develop** branch now.
+The **\*** (asterisk) next to branch name indicates that **develop** branch is our active branch. Other words we are working on **develop** branch now.
 
-Let's commit new file to the **develop** branch and checkout to the master branch and investigate content of our directory.
+Let's commit a new file into **develop** branch and checkout to the master branch and investigate content of our directory.
 ```shell
 # create commit on develop branch
 $ touch d.txt
@@ -284,7 +284,7 @@ d.txt  readme.md
 ```
 
 ## Merge conflicts
-  So far so good. However, things not always go as expected. Often you will find yourself in a situation where you'll have to resolve **merge conflicts**. A conflict in context of version control is a situation when you try to merge a files that has overlapping and conflicting information between the branches that you are trying to merge. Here is an example.
+  So far so good. However, things not always go as expected. Often you will find yourself in a situation where you'll have to resolve **merge conflicts**. A conflict in context of version control is a situation when you try to merge a files that has overlapping content between the branches that you are trying to merge. Here is an example.
 
 ```shell
 # create conflicting line file on master
@@ -319,7 +319,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 ## Looking into merge conflict
-Don't think about merge conflict as something bad happen. Actually, merge conflicts save yours ass! To resolve merge conflict we will have to investigate where it occurred.
+Don't think about merge conflict as something bad happen. Actually, merge conflicts save your ass! To resolve merge conflict we will have to investigate where it occurred.
 
 Let's have look into that.
 
@@ -387,7 +387,7 @@ d296a37 d.txt
 **Important!** This is the first time that we can notice that Git actually does the **snapshots**. Have a look at the hash associated with last commit before and after `git commit --amend`. You can see that Git generated new hash -and this is the new snapshot.   
 
 ## Stash
-Writing a software is a task that requires a focus. You have to go into the focus zone and start translating a conceptual model (requirements) into tangible things understandable by a computer. More likely, during the process of writing code you will be interrupted, and request to fix some bug that appeared in previous commit(s). `git stash` is the tool that solves exactly this problem. It does what it says. It stashes uncommitted changes, and place you at the **HEAD**. Let's put our hands on it.
+Writing a software is a task that requires a focus. You have to go into the focus zone and start translating a conceptual model (requirements) into tangible things understandable by a computer. More likely, during the process of writing code you will be interrupted, and request to fix some bugs that appeared in previous commit(s). `git stash` is the tool that solves exactly this problem. It does what it says. It stashes uncommitted changes, and place you at the **HEAD**. Let's put our hands on it.
 
 
 ```shell
@@ -537,7 +537,7 @@ nothing to commit, working directory clean
 
 Zum teufel! Did it happen what I think it happened? Yes you just experience the mysterious ***Force*** that was first introduce to in **Episode IV** (1977).
 
-Because git constantly tracks for the changes added and removed to your project and instantly creates snapshot of the changes at any time you rare able to commit or discard the changes. In this case our change was action of remove the files, which we discarded with `git checkout` command.
+Because git constantly tracks for the changes added and removed to your project and instantly creates snapshot of the changes at any time you are able to commit or discard the changes. In this case our change was action of remove the files, which we discarded with `git checkout` command.
 
 ## Tagging
 Additionally interesting feature that Git has to offer is ability of tagging specific commits. Tagging is a convenient solution for marking milestones in software project.
