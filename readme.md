@@ -1,7 +1,14 @@
+
+<a href="https://www.youtube.com/watch?v=Q37xJtuQ24w&t=1m11s">
+  <p align="center">
+    <img src="too_old.png"/>
+  </p>
+</a>
+
 # Das ist GIT!
 Welcome to the `Git version control` workshop. Objectives of this workshop are to teach you concepts encountered in version control tools, as well as to give you necessary [Git](https://git-scm.com/doc) skills that you will apply in your next project. Tutorial was written with focus on people who has none or limited knowledge of Git.
 
-In this tutorial I will walk you through basic commands that you have to know while working with Git. I will walk you through the frequent tasks which will become your bread and butter if it's about working with git. Let's started with our project.
+In this tutorial I will walk you through basic commands that you have to know, and tasks that you will perform while working with Git. Enough talking,let's started our project.
 
 ## Requirements
 Before starting this tutorial you have to fulfilled below requirements.
@@ -12,12 +19,12 @@ Before starting this tutorial you have to fulfilled below requirements.
 * access to a linux/unix terminal
 
 ## Assumption
-I assume that the reader has fulfilled points specified in requirements section.
+I assume that a reader has fulfilled points specified in requirements section.
 
 ## History
 Let me ask you this question. Try to name a single software that has the grates impact on humanity? it's difficult one, but in my opinion it's [Linux](https://en.wikipedia.org/wiki/Linux) initially written by [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds).
 
-Without Linux, you would have to throw out all smartphones, tablets and TVs that run on Android and iOS. Moreover, content of the web would shrink at least 60% and many more.
+Without Linux, you would have to throw out all smartphones, tablets and TVs that run on Android and iOS. Moreover, content of the web would shrink at least 65% and many more.
 
 But how you write a software that counts 15+ million lines of code? For suer, it can't be written by a single man. Further more in the project like this you would like to keep track on who added changes, when changes had been added, what was added, which files had been removed, recover deleted files, resolve overlaps of conflicting information, version the changes, fix bugs, fix security volubilities etc.
 
@@ -29,7 +36,7 @@ OK, if the thing that I'm writing about doesn't make sense to you then don't wor
 To makes things easier let's level up and gain necessary vocabulary to work with git.
 * **remote** - refers to git repository hosted in the cloud.
 * **origin** - refers to branch on remote.
-* **branch** - direction of your work within your git repository.
+* **branch** - direction of work within your git repository.
 * **master** - default branch for any git repository.
 * **commit** - amount of information to be contributed to a branch.
 * **push** - action of sending commits to origin (cloud).
@@ -37,9 +44,9 @@ To makes things easier let's level up and gain necessary vocabulary to work with
 * **HEAD** - latest commit on active branch.
 
 ## Inner Workings
-Git thinks of data as a set of snapshots. Every time you create a commit, or save the state of your project, Git takes a picture of all files stored in your project and reference to it as snapshot (commit). If files have not changed then Git doesn’t store the file again, installed it links to the previous identical file it has already stored. However, if a file has changed then Git stores the difference between previous state of the file and the current state. Everytime you create a commit Git creates a snapshot represented by SHA-1 hash (cheksum), this way it's impossible to change content of a file without Git knowing about it.
+Git thinks of data as a set of snapshots. Every time you create a commit, or save the state of your project, Git takes a picture of all files stored in your project and reference to it as snapshot (commit). If files have not changed then Git doesn’t store the file again, instead it links to the previous identical file it has already stored. However, if a file has changed then Git stores the difference between previous state of the file and the current state.
 
-Additional advantage of using Git is possibility of working offline. You can locally contribute changes to your project and next time when you are online you will sync the difference between your local version of the project with online version.
+Every time you create a commit Git creates a snapshot represented by SHA-1 hash (cheksum), this way it's impossible to change content of a file without Git knowing about it. Additional advantage of using Git is possibility of working offline. You can locally contribute changes to your project and next time when you are online you will sync the difference between your local version of the project with online version.
 
 ## Conceptual model
 The key to understand anything new is to develop conceptual model about the thing that you try to learn. A good conceptual model should be easily explainable to a kid. If you can do that then, it means that you have a big picture of the thing that you are talking about, *und das is GIT! Ja?*
