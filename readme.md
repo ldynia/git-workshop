@@ -546,7 +546,7 @@ Let's have a look at it.
 
 ```shell
 # display all tags
-$ git tags
+$ git tag
 $
 
 # create tag
