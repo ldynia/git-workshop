@@ -218,13 +218,15 @@ $ git commit -m'd.txt'
 1 file changed, 0 insertions(+), 0 deletions(-)
 create mode 100644 d.txt
 
-# list content of directory
+# list files
 $ ls
 d.txt readme.md
 
 # checkout to master branch and list content of directory
 $ git checkout master
 Switched to branch 'master'
+
+# list files
 $ ls
 readme.md
 ```
@@ -265,9 +267,11 @@ Can you see now that we are behind one commit on the **master** branch? This com
 Another thing that you will be doing frequently with git is to merge a commits between the branches -I'm telling you that you will be bored with it. To merge changes from one branch to another you have to switch to the branch that you want to merge changes into and execute `git merge <branch_tom_merge_with>` command.
 
 ```shell
+# change branch
 $ git checkout master
 Already on 'master'
 
+# merge with develop
 $ git merge develop
 Updating 166e350..d296a37
 Fast-forward
@@ -275,10 +279,12 @@ Fast-forward
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 d.txt
 
+# display log
 $ git log --oneline
  1a627dc adding dev file
  aec47ab init -adding readme.md
 
+# display content
 $ ls
 d.txt  readme.md
 ```
@@ -324,6 +330,7 @@ Don't think about merge conflict as something bad happen. Actually, merge confli
 Let's have look into that.
 
 ```shell
+# display content
 $ cat a.txt
 <<<<<<< HEAD
 roses are blue
@@ -373,10 +380,12 @@ $ echo "sky is blue" >> a.txt
 $ git add a.txt
 $ git commit --amend
 
+# display content
 $ cat a.txt
 roses are red
 sky is blue
 
+# display log
 $ git log --oneline
 1a0f541 resolving red/blue conflict
 4c2b42a red
@@ -445,6 +454,7 @@ I\'m in the zone
 Sometimes you will find yourself in the situation that you will have to discard changes that you have started working on. To do it you will use `git check` command.
 
 ```shell
+# check status
 $ git status
 On branch master
 Changes not staged for commit:
@@ -455,8 +465,10 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
+# discard changes
 $ git checkout a.txt
 
+# display content
 $ cat a.txt
 roses are red
 sky is blue
@@ -485,9 +497,11 @@ d296a37 d.txt
 $ git reset --hard 1a0f541
 HEAD is now at 1a0f541 resolving red/blue conflict
 
+# list files
 $ ls
 a.txt  d.txt  readme.md
 
+# display log
 $ git log --oneline
 1a0f541 resolving red/blue conflict
 4c2b42a red
@@ -502,14 +516,14 @@ As you can see we removed one commit by reseting the git repository to second th
 All of us knows what happens when you run this command `rm file.txt`. With the moment of pressing enter the file will be gone.
 
 ```shell
-# display content of directory
+# list files
 $ ls
 a.txt  d.txt  readme.md
 
 # uppppps! files are gone
 $ rm *
 
-# display content
+# list files
 $ ls
 $
 
@@ -526,6 +540,8 @@ Changes not staged for commit:
 
 # checkout uncommited changes
 $ git checkout a.txt d.txt readme.md
+
+# list files
 $ ls
 a.txt  d.txt  readme.md
 
@@ -626,6 +642,7 @@ index 76fda2f..5b51314 100644
  6
 +3.14
 
+# create commit
 $ git add  numbers.txt
 $ git commit -m'pi'
 ```
@@ -636,11 +653,13 @@ Previously we worked with `git checkout` in the context of restoring/discarding 
 Let's have a look at it.
 
 ```shell
+# create commit
 $ git checkout develop
 $ echo "2.71" >> numbers.txt
 $ git add numbers.txt
 $ git commit -m'e'
 
+# change branch and display content
 $ git checkout master
 $ cat numbers.txt
 1
@@ -649,6 +668,7 @@ $ cat numbers.txt
 6
 3.14
 
+# cheery pick file
 $ git checkout develop -- numbers.txt
 $ cat numbers.txt
 3
@@ -717,7 +737,6 @@ $
 ```
 
 Yes, `git status` displays correct message. This is what our rules says.
-
 * **!.gitignore** - don't ignore *.gitignore* files
 * **\*.log** - ignore all files that ends with *\.log*
 
@@ -744,5 +763,5 @@ Together we went through the most essentially skills that you need to have in or
 
 But for now holding in one hand some brewski and in other hand Git's manual in the shape of pretzel. Let's shout out the truth that we discovered that **Git ist GIT!!!**
 
-* [Learn Git](https://www.atlassian.com/git/tutorials)
 * [Git Docs](https://git-scm.com/doc)
+* [Git Tutorial](https://www.atlassian.com/git/tutorials)
